@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 2</title>
+        <style>
+            td {text-align: center;}
+        </style>
+    </head>
+
+    <body>
+        <script src="ejercico2.js"></script>
+        <!--Tabla inicial-->
+        <h3 id="numEmp" align="center">Número total de empleados: 3</h3>
+        <table id="tabla" border="2" align="center" width="700" text>
+            <tr>
+                <td><b>Número de<br>empleado</b></td>
+                <td><b>DNI</b></td>
+                <td><b>Nombre</b></td>
+                <td><b>Apellidos</b></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>77332344K</td>
+                <td>María</td>
+                <td>Pérez Izquierdo</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>23445677J</td>
+                <td>Javier</td>
+                <td>López Martínez</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>12345678H</td>
+                <td>Manuel</td>
+                <td>Sánchez Martos</td>
+            </tr>
+        </table>
+        <br>
+        <p align="center">
+        <!--Botones para las funciones-->
+        <button type="submit" onclick="insertar();">Añadir empleado</button> 
+        <button type="submit" onclick="eliminar();">Eliminar empleado</button> 
+        <button type="submit" onclick="modificar();">Modificar empleado</button> 
+        </p>
+    </body>
+</html>
