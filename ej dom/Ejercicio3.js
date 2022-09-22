@@ -38,21 +38,26 @@ h1T.appendChild(entrevistaT);
 form2.insertAdjacentElement("afterbegin", h1T);
 
 // - Agrega un título a la pregunta Male/Female 'Gender'
-//creo titulo
+	//creo titulo
 let titulo = document.createElement("p");
 let textoTitulo = document.createTextNode("Gender:");
 titulo.appendChild(textoTitulo);
-//recupero elemento male para poner el titulo encima
+	//recupero elemento male para poner el titulo encima
 let male = document.querySelector('[value="male"]');
 male.insertAdjacentElement("beforebegin", titulo);
 
 // - Agrega una pregunta Email: con un input de tipo texto después de last name
-//creo el elemento para email
-let email = document.createElement("input");
+	//creo el elemento para email
+let input = document.createElement("input");
+input.setAttribute("type", "text");
+let email = document.createElement("p");
 let textoEmail = document.createTextNode("Email:");
 email.appendChild(textoEmail);
-email.setAttribute("type", "text");
-//recupero last name y lo pongo despues
+	//recupero last name y lo pongo despues
+let lastName = document.querySelector('[name="lastname"]');
+lastName.insertAdjacentElement("afterend", email); 
+email.insertAdjacentElement("afterend", input);
+
 
 // - Agrega la clase form a ambos formularios
 let formularios = document.querySelectorAll('form');
