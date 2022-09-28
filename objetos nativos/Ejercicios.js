@@ -26,6 +26,10 @@ document.querySelector("#search").innerHTML+=location.search;
 
 // Actividad 4: A partir de la página proporcionada en las transparencias 
 // https://developer.mozilla.org/es/docs/Web/API/Navigator indica y prueba algunos métodos útiles del objeto navigator.
+registerProtocolHandler();
+getBattery();
+canShare();
+getUserMedia();
 
 // Actividad 5: Revisa la documentación del objeto screen https://developer.mozilla.org/es/docs/Web/API/Screen 
 // y busca al menos 3 ejemplos útiles que puedas realizar con este objeto.
