@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Validar formulario</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <form>
+    <fieldset>
+        <legend>Formulario de registro</legend>
+        Nombre completo: <input type="text" id="nombre" minlength="10"><br><br>
+        Género: <input type="radio" name="genre" value="m" required>Masculino 
+        <input type="radio" name="genre" value="f">Femenino
+        <input type="radio" name="genre" value="o">Otro<br><br>
+        Fecha de nacimiento: <input type="date" id="fecha"><br><br>
+        Email: <input type="email" id="email"><br><br>
+        <button type="submit">Enviar</button>
+    </fieldset>
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>

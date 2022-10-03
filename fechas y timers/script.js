@@ -44,7 +44,10 @@ function showCalendar(){
 
 let delayDate = new Date (document.querySelector("#delayDate").value);
 let daysDelayed = document.querySelector("#daysDelayed");
-
+daysDelayed.addEventListener('input', ()=>{
+    let paymentDate = new Date (delayDate - daysDelayed);
+document.getElementById("ejTres").innerHTML+= `Fecha del pago: ${paymentDate.toDateString()}`;
+});
 
 // 4. Un cronómetro con el siguiente formato:
 // Hoy es 30-9-2019 y son las 21:4:23 horas.
