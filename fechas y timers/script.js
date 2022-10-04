@@ -54,7 +54,16 @@ payDateButton.addEventListener('click', ()=>{
 // 4. Un cronómetro con el siguiente formato:
 // Hoy es 30-9-2019 y son las 21:4:23 horas.
 
-
+//cambiar boy onload por un botón de activar
+function timer(){
+    var refresh=1000; // Refresh rate in milli seconds
+    mytime=setTimeout('showDate()',refresh)
+}
+function showDate(){
+    let today = new Date();
+    document.getElementById("ejCuatro").innerHTML= `Hoy es ${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()} y son las ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()} horas.`
+    timer();
+}
 
 // 5. Una alarma que mostrará la hora actual y nos permite indicar la hora a la que sonará, 
 // cuando llegue a la hora, pregunta si se quiere posponer o detener, 
