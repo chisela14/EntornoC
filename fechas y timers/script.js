@@ -42,11 +42,13 @@ function showCalendar(){
 // 3. Un campo que nos permita introducir una fecha y otro que nos permita introducir los días de retraso en el pago, 
 // una ves introducidos nos devolverá la fecha del pago.
 
-let delayDate = new Date (document.querySelector("#delayDate").value);
-let daysDelayed = document.querySelector("#daysDelayed");
-daysDelayed.addEventListener('input', ()=>{
-    let paymentDate = new Date (delayDate - daysDelayed);
-document.getElementById("ejTres").innerHTML+= `Fecha del pago: ${paymentDate.toDateString()}`;
+let delayDate = document.querySelector("#delayDate");
+let daysDelayed = document.querySelector("#daysDelayed").value;
+let payDateButton = document.querySelector("#showDate");
+payDateButton.addEventListener('click', ()=>{
+    let paymentDate = new Date (delayDate.value);
+    paymentDate.setDate(paymentDate.getDate() - (daysDelayed +1));
+    document.getElementById("ejTres").innerHTML+= `Fecha inicial del pago: ${paymentDate.toDateString()}`;
 });
 
 // 4. Un cronómetro con el siguiente formato:
