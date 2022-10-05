@@ -54,9 +54,10 @@ payDateButton.addEventListener('click', ()=>{
 // 4. Un cronómetro con el siguiente formato:
 // Hoy es 30-9-2019 y son las 21:4:23 horas.
 
-//cambiar boy onload por un botón de activar
+let startB = document.querySelector("#start");
+startB.addEventListener("click", showDate);
 function timer(){
-    var refresh=1000; // Refresh rate in milli seconds
+    var refresh=1000; 
     mytime=setTimeout('showDate()',refresh)
 }
 function showDate(){
@@ -68,3 +69,4 @@ function showDate(){
 // 5. Una alarma que mostrará la hora actual y nos permite indicar la hora a la que sonará, 
 // cuando llegue a la hora, pregunta si se quiere posponer o detener, 
 // si se pospone "sonará" a los 2 minutos. EXTRA: haz que suene un sonido además de mostrar el mensaje.
+

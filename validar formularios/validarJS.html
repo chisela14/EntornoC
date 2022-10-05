@@ -8,12 +8,16 @@
     <form>
     <fieldset>
         <legend>Formulario de registro</legend>
-        Nombre completo: <input type="text" id="nombre" minlength="10"><br><br>
-        Género: <input type="radio" name="genre" value="m" required>Masculino 
+        <p>Nombre completo: <input type="text" id="nombre">
+        <small></small></p>
+        <p id="genero">Género: <input type="radio" name="genre" value="m">Masculino 
         <input type="radio" name="genre" value="f">Femenino
-        <input type="radio" name="genre" value="o">Otro<br><br>
-        Fecha de nacimiento: <input type="date" id="fecha"><br><br>
-        Email: <input type="email" id="email"><br><br>
+        <input type="radio" name="genre" value="o">Otro
+        <small></small></p>
+        <p>Fecha de nacimiento: <input type="date" id="fecha">
+        <small></small></p>
+        <p>Email: <input type="email" id="email">
+        <small></small></p>
         <button type="submit">Enviar</button>
     </fieldset>
     </form>
