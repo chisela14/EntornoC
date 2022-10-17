@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "username": "chiselam",
+      "password": "admin1",
+      "email": "chisela14@gmail.com",
+      "age": 23
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "primer post",
+      "author": "chiselam"
+    },
+    {
+      "id": 2,
+      "title": "segundo post",
+      "author": "chiselam"
+    },
+    {
+      "id": 3,
+      "title": "tercer post",
+      "author": "chiselam"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "hola",
+      "postId": 1
+    }
+  ]
+}
