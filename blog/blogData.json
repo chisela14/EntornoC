@@ -1,6 +1,7 @@
 {
   "users": [
     {
+      "id": 1,
       "username": "chiselam",
       "password": "admin1",
       "email": "chisela14@gmail.com",
@@ -11,24 +12,28 @@
     {
       "id": 1,
       "title": "primer post",
-      "author": "chiselam"
+      "authorId": 1,
+      "body": "asdhjk"
     },
     {
       "id": 2,
       "title": "segundo post",
-      "author": "chiselam"
+      "authorId": 1,
+      "body": "asdhjk"
     },
     {
       "id": 3,
       "title": "tercer post",
-      "author": "chiselam"
+      "authorId": 1,
+      "body": "asdhjk"
     }
   ],
   "comments": [
     {
       "id": 1,
       "body": "hola",
-      "postId": 1
+      "postId": 1,
+      "authorId": 1
     }
   ]
 }
