@@ -5,7 +5,14 @@
       "username": "chiselam",
       "password": "admin1",
       "email": "chisela14@gmail.com",
-      "age": 23
+      "birthDate": "30/09/1999"
+    },
+    {
+      "id": 2,
+      "username": "nadiac",
+      "password": "admin2",
+      "email": "nadiacor@gmail.com",
+      "birthDate": "29/09/1999"
     }
   ],
   "posts": [
@@ -18,14 +25,14 @@
     {
       "id": 2,
       "title": "segundo post",
-      "authorId": 1,
-      "body": "asdhjk"
+      "authorId": 2,
+      "body": "zcvn"
     },
     {
       "id": 3,
       "title": "tercer post",
       "authorId": 1,
-      "body": "asdhjk"
+      "body": "qwer"
     }
   ],
   "comments": [
@@ -33,7 +40,15 @@
       "id": 1,
       "body": "hola",
       "postId": 1,
-      "authorId": 1
+      "authorId": 1,
+      "timeStamp": "2022-10-15"
+    },
+    {
+      "id": 2,
+      "body": "adios",
+      "postId": 1,
+      "authorId": 2,
+      "timeStamp": "2022-10-16"
     }
   ]
 }

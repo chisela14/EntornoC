@@ -1,8 +1,4 @@
-// Creación de usuarios con validación de diferentes campos.
 // Lista de posts con título y autor.
-// Post con título, contenido y autor. Además se mostrarán los comentarios y nos permitirá añadir 
-//     nuevos comentarios, pudiendo seleccionar el autor como queramos.
-// EXTRA: página para añadir nuevos post, permitirá seleccionar el autor mediante un campo select.
 
 let peticion = new XMLHttpRequest();
 let lista = document.getElementById("lista");
@@ -18,27 +14,28 @@ peticion.addEventListener('load', function(){
             //recupero la información del usuario 
             let username;
             let reqUser = new XMLHttpRequest();
-            reqUser.open('GET', `http://localhost:3000/users?=${post.authorId}`);
+            reqUser.open('GET', `http://localhost:3000/users?id=${post.authorId}`);
             reqUser.send();
             reqUser.addEventListener('load', function(){
                 if (peticion.status===200) {
                     let user = JSON.parse(reqUser.responseText);
                     user = user[0];
                     username = user.username;
+
+                    //creo elemento li para la información del post
+                    let li = document.createElement("li");
+                    //añado una etiqueta a para que sea un enlace a otra página
+                    let a = document.createElement("a");
+                    a.setAttribute("href", `post.html?id=${post.id}`);
+                    let textoPost = document.createTextNode(`Título: ${post.title} Autor: ${username}`);
+                    a.appendChild(textoPost);
+                    li.appendChild(a);
+                    //añado el post a la lista
+                    lista.appendChild(li);
                 }else {
                     muestraError();
                 }
             })
-            //creo elemento li para la información del post
-            let li = document.createElement("li");
-            //añado una etiqueta a para que sea un enlace a otra página
-            let a = document.createElement("a");
-            a.setAttribute("href", `post.html?id=${post.id}`);
-            let textoPost = document.createTextNode(`Título: ${post.title} Autor: ${username}`);
-            a.appendChild(textoPost);
-            li.appendChild(a);
-            //añado el post a la lista
-            lista.appendChild(li);
         }
     }else {
         muestraError();
