@@ -2,97 +2,76 @@
 //     nuevos comentarios, pudiendo seleccionar el autor como queramos.
 // EXTRA: página para añadir nuevos post, permitirá seleccionar el autor mediante un campo select.
 
-let peticion = new XMLHttpRequest();
 let title = document.getElementById("title");
 let bodyPost = document.getElementById("body");
 let listaCom = document.getElementById("listaCom");
+let form = document.querySelector("form");
+let comment = document.querySelector("#newComment");
+let select = document.querySelector("#listaUser");
+let selectedUser;
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 
-//funcion para comparar fechas
-function compareDate(a, b){
-    result = 0;
-    d1 = new Date(a.parse());
-    d2 = new Date(b.parse());
-    if(d1 < d2){
-        result = -1;
-    }
-    if(d2>d1){
-        result = 1;
-    }
-    return result;
-}
-
 //recupero el post con el id enviado
-peticion.open('GET', `http://localhost:3000/posts?id=${id}`);
-peticion.send();
-peticion.addEventListener('load', function(){
-    if (peticion.status===200) {
-        let post = JSON.parse(peticion.responseText);
+fetch(`http://localhost:3000/posts?id=${id}`)
+    .then(postResponse => {
+        if(postResponse.ok){
+            return postResponse.json();
+        }else{
+            return Promise.reject(postResponse);
+        }
+    })
+    .then(post => {
         post = post[0];
         bodyPost.innerText = post.body;
-        //recupero autor del post
-        let author;
-        let reqAuthor = new XMLHttpRequest();
-        reqAuthor.open('GET', `http://localhost:3000/users?id=${post.authorId}`);
-        reqAuthor.send();
-        reqAuthor.addEventListener('load', function(){
-            if (peticion.status===200) {
-                let userA = JSON.parse(reqAuthor.responseText);
-                userA = userA[0];
-                author = userA.username;
-                title.innerText = `${post.title} - por ${author}`;
-            }else {
-                muestraError();
-            }
-        })
-        // //recuperar comentarios cuyo postId sea el mismo enviado por la url
-        let reqComments = new XMLHttpRequest();
-        reqComments.open('GET', `http://localhost:3000/comments?postId=${id}`);
-        reqComments.send();
-        reqComments.addEventListener('load', function(){
-            if (reqComments.status===200) {
-                let comments = JSON.parse(reqComments.responseText);
-                //https://www.c-sharpcorner.com/UploadFile/fc34aa/sort-json-object-array-based-on-a-key-attribute-in-javascrip/ 
-                comments.sort(compareDate("timeStamp"));
+        //recupero el autor del post
+        fetch(`http://localhost:3000/users?id=${post.authorId}`)
+            .then(authorResponse => {
+                if(authorResponse.ok){
+                    return authorResponse.json();
+                }else{
+                    return Promise.reject(authorResponse);
+                }
+            })
+            .then(author => {
+                author = author[0];
+                title.innerText = `${post.title} - por ${author.username}`;
+            });
+        //recupero los comentarios del post
+        fetch(`http://localhost:3000/comments?postId=${id}`)
+            .then(commentsResponse => {
+                if(commentsResponse.ok){
+                    return commentsResponse.json();
+                }else{
+                    return Promise.reject(commentsResponse);
+                }
+            })
+            .then(comments => {
+                //recorro los comentarios para obtener el usuario y añadirlos
                 for (let comment of comments){
-                    //recupero el usuario que comentó 
-                    let username;
-                    let reqUser = new XMLHttpRequest();
-                    reqUser.open('GET', `http://localhost:3000/users?id=${comment.authorId}`);
-                    reqUser.send();
-                    reqUser.addEventListener('load', function(){
-                        if (peticion.status===200) {
-                            let userC = JSON.parse(reqUser.responseText);
-                            userC = userC[0];
-                            username = userC.username;
-
+                    fetch(`http://localhost:3000/users?id=${comment.authorId}`)
+                        .then(userResponse => {
+                            if(userResponse.ok){
+                                return userResponse.json();
+                            }else {
+                                return Promise.reject(userResponse);
+                            }
+                        })
+                        .then(user => {
+                            user = user[0];
                             //muestro el comentario en la lista
                             let li = document.createElement("li");
-                            let small = document.createElement("small");
-                            small.appendChild(document.createTextNode(`${comment.timeStamp}`));
-                            let textoCom = document.createTextNode(`${username}: ${comment.body}     `);
+                            let textoCom = document.createTextNode(`${user.username}: ${comment.body}     `);
+                            //TO DO mostrar timestamp
                             li.appendChild(textoCom);
-                            li.appendChild(small);
                             listaCom.appendChild(li);
-                        }else {
-                            muestraError();
-                        }
-                    })
+                        });
                 }
-            }else {
-                muestraError();
-            }
-        })
-    }else {
-        muestraError();
-    }
-})
-
-peticion.addEventListener('error', muestraError);
-peticion.addEventListener('abort', muestraError);
-peticion.addEventListener('timeout', muestraError);
+            });
+    })
+    .catch(err => muestraError);
+    
 
 function muestraError() {
     if (this.status) {
@@ -101,3 +80,52 @@ function muestraError() {
         console.log("Ocurrió un error o se abortó la conexión");
     }
 }
+
+//recupero los usuarios para añadirlos al select del formulario
+fetch('http://localhost:3000/users')
+    .then(response => {
+        if(response.ok){
+            return response.json();
+        }else{
+            return Promise.reject(response);
+        }
+    })
+    .then(users => {
+        for(let user of users){
+            let option = document.createElement("option");
+            option.setAttribute("value", user.id);//option.value
+            let optionText = document.createTextNode(user.username);//option.textContent
+            option.appendChild(optionText);
+            select.appendChild(option);
+        }
+    })
+    .catch(err => {
+        console.log('Error en la petición HTTP: '+err.message);
+    });
+
+//cuando se envie el formulario se guardan los datos y se añaden al json
+form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    selectedUser = select.options[select.selectedIndex].value;
+    //obtener fecha del momento y añadirla 
+    let fecha = Date.now();
+    let data = {"body": comment.value, "postId": id, "authorId": selectedUser, "timestamp": fecha};
+    //guardo los datos en el json
+    fetch('http://localhost:3000/comments', {
+            method: 'POST', 
+            body: JSON.stringify(data), 
+            headers:{
+              'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+              return response.json();
+            }
+            return Promise.reject(response) 
+          })
+          .then(datos => datosServidor=datos)
+          .catch(err => {
+            console.log('Error en la petición HTTP: '+err.message);
+          });
+})

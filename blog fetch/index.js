@@ -28,9 +28,8 @@ fetch('http://localhost:3000/posts')
                     }
                 })
                 .then(user => {
-                    // user = user.value[0];
-                    // console.log(username);
-                    // let username = user.username;
+                    user = user[0];
+                    let username = user.username;
                     //creo elemento li para la información del post
                     let li = document.createElement("li");
                     //añado una etiqueta a para que sea un enlace a otra página

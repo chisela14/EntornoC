@@ -4,10 +4,16 @@
     <title>BJ - Post</title>
 </head>
 <body>
-    <h4 id="title"></h4>
+    <h2 id="title"></h2>
     <p id="body"></p>
-    <h5>Comentarios</h5>
+    <h3>Comentarios</h3>
     <ul id="listaCom"></ul>
+    <form>
+        <h4>Añadir comentario</h4>
+        <input type="textarea" placeholder="Escribe un comentario" id="newComment"><br><br>
+        Usuario: <select id="listaUser"></select>
+        <button type="submit">Enviar</button>
+    </form>
     <script src="post.js"></script>
 </body>
 </html>

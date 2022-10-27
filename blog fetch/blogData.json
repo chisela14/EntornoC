@@ -11,48 +11,24 @@
       "username": "nadiac",
       "password": "admin2",
       "email": "nadiacor@gmail.com"
-    },
-    {
-      "username": "aaa",
-      "password": "123456aA@",
-      "email": "asd@gmail.com",
-      "id": 3
-    },
-    {
-      "username": "aaa",
-      "password": "123456aA@",
-      "email": "asd@gmail.com",
-      "id": 4
-    },
-    {
-      "username": "aaa 2",
-      "password": "123456aA@",
-      "email": "asd@gmail.com",
-      "id": 5
-    },
-    {
-      "username": "aaa 2",
-      "password": "123456aA#",
-      "email": "asd@gmail.com",
-      "id": 6
     }
   ],
   "posts": [
     {
       "id": 1,
-      "title": "primer post",
+      "title": "curso de javascript",
       "authorId": 1,
       "body": "asdhjk"
     },
     {
       "id": 2,
-      "title": "segundo post",
+      "title": "feria de brenes",
       "authorId": 2,
       "body": "zcvn"
     },
     {
       "id": 3,
-      "title": "tercer post",
+      "title": "convocatoria de huelga",
       "authorId": 1,
       "body": "qwer"
     }
@@ -62,15 +38,26 @@
       "id": 1,
       "body": "hola",
       "postId": 1,
-      "authorId": 1,
-      "timeStamp": "2022-10-15"
+      "authorId": 1
     },
     {
       "id": 2,
       "body": "adios",
       "postId": 1,
-      "authorId": 2,
-      "timeStamp": "2022-10-16"
+      "authorId": 2
+    },
+    {
+      "body": "jkbghxdfgh xchgf",
+      "postId": "1",
+      "authorId": "2",
+      "id": 3
+    },
+    {
+      "body": "asdasdsf",
+      "postId": "1",
+      "authorId": "1",
+      "timestamp": 1666873650168,
+      "id": 4
     }
   ]
 }
