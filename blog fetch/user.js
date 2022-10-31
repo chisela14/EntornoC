@@ -93,6 +93,7 @@ form.addEventListener('submit', function (e) {
         isEmailValid;
     //si el formulario es válido añado los datos al json
     if (isFormValid) {
+        location.href = "index.html";
         let data = {"username": userEl.value.trim(), "password": passwordEl.value.trim(), "email": emailEl.value.trim()};
         fetch('http://localhost:3000/users', {
             method: 'POST', 
@@ -114,3 +115,8 @@ form.addEventListener('submit', function (e) {
           
     }
 });
+
+let back = document.querySelector(".back");
+back.addEventListener('click', ()=> {
+    location.href = "index.html";
+})
