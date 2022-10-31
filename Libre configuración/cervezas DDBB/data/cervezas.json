@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "nombre": "mahou",
+        "grados": 3.2
+    },
+    {
+        "id": 2,
+        "nombre": "cruzcampo",
+        "grados": 3.5
+    },
+    {
+        "id": 3,
+        "nombre": "ambar",
+        "grados": 4.2
+    }
+]
