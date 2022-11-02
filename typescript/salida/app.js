@@ -5,15 +5,17 @@ var PERSONAJE = {
     nombre: nombre,
     edad: edad
 };
-console.log(PERSONAJE);
+console.log('1.- ' + PERSONAJE);
 var batman = {
     nombre: "Bruno Díaz",
     artesMarciales: ["Karate", "Aikido", "Wing Chun", "Jiu-Jitsu"]
 };
+console.log('2.- ' + batman);
 // Convertir esta funcion a una funcion de flecha
 var resultadoDoble = function (a, b) {
     return (a + b) * 2;
 };
+console.log('3.- ' + resultadoDoble(2, 3));
 // Función con parametros obligatorios, opcionales y por defecto
 // donde NOMBRE = obligatorio
 //       PODER  = opcional

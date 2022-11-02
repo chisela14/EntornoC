@@ -4,3 +4,6 @@
         "practicando/*"
     ]
 }
+
+//tsc.cmd -p 'c:\Users\chise\OneDrive\Escritorio\Cole\2 DAW\Entorno cliente\EntornoC\typescript\tsconfig.json' 
+//en windows tengo que usar tsc.cmd

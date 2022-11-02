@@ -8,7 +8,7 @@ const PERSONAJE: { nombre:string, edad:number } = {
   edad: edad
 };
 
-console.log('1' + PERSONAJE);
+console.log('1.- ' + PERSONAJE);
 
 // Cree una interfaz que sirva para validar el siguiente objeto
 interface Personaje {
@@ -20,13 +20,13 @@ let batman:Personaje = {
   nombre: "Bruno Díaz",
   artesMarciales: ["Karate","Aikido","Wing Chun","Jiu-Jitsu"]
 }
-console.log('2' + batman);
+console.log('2.- ' + batman);
 
 // Convertir esta funcion a una funcion de flecha
 let resultadoDoble = (a:number, b:number) => {
   return (a + b) * 2
 }
-console.log('3' +resultadoDoble(2,3));
+console.log('3.- ' +resultadoDoble(2,3));
 
 // Función con parametros obligatorios, opcionales y por defecto
 // donde NOMBRE = obligatorio
