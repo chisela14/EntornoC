@@ -5,7 +5,10 @@
         <h3>Personajes</h3>
         <hr>
         <ul>
-            <li *ngFor="let p of personajes">{{p.name}}</li>
+            <li *ngFor="let c of characters">{{c.name}} - <health
+                [ngClass]="{'green': c.health> 3000, 'yellow': c.health > 1001 && c.health < 3000,
+                'red': c.health > 0 && c.health < 1001}">{{c.health}}</health>
+            </li>
         </ul>
     </div>
 </div>

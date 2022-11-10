@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Personaje } from '../interfaces/personaje';
+import { Character } from '../interfaces/character';
 
 @Component({
   selector: 'app-main-page',
@@ -11,9 +11,9 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
-  personajes:Personaje[] = [
+  characters:Character[] = [
     {name:"Shelly", health:3600},
-
+    {name:"Nita", health:980},
+    {name:"Colt", health:2800}
   ]
 }
