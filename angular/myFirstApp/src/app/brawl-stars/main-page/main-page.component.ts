@@ -11,9 +11,20 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  characters:Character[] = [
+  nuevo:Character = {name:"", health:0}
+
+  personajes:Character[] = [
     {name:"Shelly", health:3600},
-    {name:"Nita", health:980},
-    {name:"Colt", health:2800}
+    {name:"Jessie", health:3000},
+    {name:"Colt", health:2800},
+    {name:"Shandy", health:1001},
+    {name:"Nita", health:1000},
+    {name:"Spike", health:980}
   ]
+
+  annadir(){
+    this.personajes.push(this.nuevo);
+    this.nuevo = {name:"", health:0}
+  }
+
 }

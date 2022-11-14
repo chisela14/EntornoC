@@ -1,0 +1,6 @@
+<h3>Añadir personaje</h3>
+    <form (ngSubmit)="addCharacter()"> <!-- [value]="nuevo.name" del componente al html, no al revés-->
+        Name: <input type="text" name="name" id="name" [(ngModel)]="new.name"> <!-- [(ngModel)]="nuevo.name" bidireccional, obligatorio tener atributo name-->
+        Health: <input type="number" name="health" id="health" [(ngModel)]="new.health">
+        <button type="submit">Add</button>
+    </form>
