@@ -3,6 +3,7 @@
         <ul>
             <li *ngFor="let c of characters">{{c.name}} - <health
                 [ngClass]="{'green': c.health> 3000, 'yellow': c.health > 1000 && c.health < 3001,
-                'red': c.health >= 0 && c.health < 1001}">{{c.health}}</health>
+                'red': c.health >= 0 && c.health < 1001}">{{c.health}}   </health>
+                <button type="button" (click) = "delete(c.name)">Borrar</button>
             </li>
         </ul>

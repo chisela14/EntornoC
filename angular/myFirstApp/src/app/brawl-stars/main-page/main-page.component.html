@@ -2,9 +2,12 @@
 <hr>
 <div class="row">
     <div class="col">
-        <app-character [characters]="personajes"></app-character>
+        <!-- [characters]="personajes" -->
+        <app-character></app-character>
     </div>
     <div class="col">
-        <app-add-character [new]="nuevo" [addCharacter]="annadir"></app-add-character>
+        <!-- [new]="nuevo" envia el input que se ha hecho en este componente(se pueden llamar igual) -->
+        <!-- (onNewCharacter)="annadir($event)" -->
+        <app-add-character [new]="nuevo"></app-add-character>
     </div>
 </div>
