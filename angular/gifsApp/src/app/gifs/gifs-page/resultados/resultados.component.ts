@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { GifsService } from '../../services/gifs.service';
 
 @Component({
   selector: 'app-resultados',
-  templateUrl: './resultados.component.html',
-  styleUrls: ['../../../app.component.css']
+  templateUrl: './resultados.component.html'
 })
 export class ResultadosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private gifsService: GifsService) { }
 
   ngOnInit(): void {
   }
 
+  get results(){
+    
+  }
+
 }
-/*Realizar las acciones necesarias para conseguir lo siguiente:
-Solo se almacenan 10 resultados.
-No se almacenan valores repetidos.*/

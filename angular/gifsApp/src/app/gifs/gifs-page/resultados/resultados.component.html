@@ -1,5 +1,5 @@
 <div class="row">
-    <div>
-        <!-- Ya le daremos contenido -->
+    <div *ngFor="let gif of results">
+        <img src="{{gif.images.downsized.url}}">
     </div>
 </div>

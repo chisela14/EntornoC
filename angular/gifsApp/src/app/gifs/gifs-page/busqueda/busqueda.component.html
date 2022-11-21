@@ -1,6 +1,10 @@
 <h5>Buscar:</h5>
-      <input
-          type="text"
-          class="form-control"
-          placeholder="Buscar gifs..."
-      >
+<form (ngSubmit)="search()"> <!-- como solo hay un input eso hace el submit -->
+    <input
+        type="text"
+        class="form-control"
+        placeholder="Buscar gifs..."
+        [(ngModel)]="query" 
+        name="busqueda"
+    > <!-- [(ngModel)] importar formsmodule, necesita name -->
+</form>
