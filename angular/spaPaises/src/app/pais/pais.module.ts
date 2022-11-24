@@ -4,6 +4,8 @@ import { PorCapitalComponent } from './pages/porCapital/por-capital.component';
 import { PorPaisComponent } from './pages/porPais/por-pais.component';
 import { PorRegionComponent } from './pages/porRegion/por-region.component';
 import { VerPaisComponent } from './pages/verPais/ver-pais.component';
+import { PaisService } from './services/pais.service';
+import { SearchComponent } from './components/search/search.component';
 
 
 
@@ -12,10 +14,14 @@ import { VerPaisComponent } from './pages/verPais/ver-pais.component';
     PorCapitalComponent,
     PorPaisComponent,
     PorRegionComponent,
-    VerPaisComponent
+    VerPaisComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule
+  ],
+  providers:[
+    PaisService
   ]
 })
 export class PaisModule { }
