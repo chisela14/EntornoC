@@ -11,6 +11,9 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  query:string = "";
+  
   search(){
     this.paisService.searchCountries(this.query);
   }

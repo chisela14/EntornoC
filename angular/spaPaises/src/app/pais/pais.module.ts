@@ -6,6 +6,8 @@ import { PorRegionComponent } from './pages/porRegion/por-region.component';
 import { VerPaisComponent } from './pages/verPais/ver-pais.component';
 import { PaisService } from './services/pais.service';
 import { SearchComponent } from './components/search/search.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -18,7 +20,9 @@ import { SearchComponent } from './components/search/search.component';
     SearchComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    RouterModule
   ],
   providers:[
     PaisService
