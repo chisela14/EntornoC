@@ -14,6 +14,10 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule
+  ],
+  exports:[
+    NavbarComponent,
+    NotFoundComponent
   ]
 })
 export class SharedModule { }
