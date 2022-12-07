@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { ServersComponent } from './servers/servers/servers.component';
 import { UsersComponent } from './users/users/users.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { AddUserComponent } from './users/add-user/add-user.component';
 
 const routes: Routes = [
   {
@@ -20,9 +21,14 @@ const routes: Routes = [
     component: UsersComponent
   },
   {
+    path:'addUser',
+    component: AddUserComponent
+  },
+  {
     path: '**',
     component: NotFoundComponent
-  }
+  },
+  
 ];
 
 @NgModule({
