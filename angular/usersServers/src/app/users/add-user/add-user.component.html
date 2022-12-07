@@ -1,13 +1,12 @@
+<h2>Añadir usuario</h2>
 <form (ngSubmit)="add()">
     <div class="form-group">
         <label for="name">Nombre</label>
-        <input type="text" placeholder="Pepito" name="name" [(ngModel)]="name">
-    </div>
+        <input type="text" placeholder="Pepito" name="name" [(ngModel)]="name" class="form-control">
+    </div><br>
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" placeholder="pepito@gmail.com" name="email" [(ngModel)]="email">
-    </div>
-    <div class="form-submit">
-        <button>Enviar</button>
-    </div>
+        <input type="email" placeholder="pepito@gmail.com" name="email" [(ngModel)]="email" class="form-control">
+    </div><br>
+    <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
