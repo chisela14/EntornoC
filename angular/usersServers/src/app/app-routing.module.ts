@@ -5,6 +5,8 @@ import { ServersComponent } from './servers/servers/servers.component';
 import { UsersComponent } from './users/users/users.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { AddUserComponent } from './users/add-user/add-user.component';
+import { UserInfoComponent } from './users/user-info/user-info.component';
+import { ServerComponent } from './servers/server/server.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,10 @@ const routes: Routes = [
     component: ServersComponent
   },
   {
+    path: 'servers/:id',
+    component: ServerComponent
+  },
+  {
     path: 'users',
     component: UsersComponent
   },
@@ -25,9 +31,17 @@ const routes: Routes = [
     component: AddUserComponent
   },
   {
-    path: '**',
+    path: 'users/:id',
+    component: UserInfoComponent
+  },
+  {
+    path: 'error',
     component: NotFoundComponent
   },
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
   
 ];
 

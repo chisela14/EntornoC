@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Server } from '../interfaces/server.interface';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -23,4 +26,8 @@ export class ServersService {
   ]
 
   constructor() { }
+
+  getServer(id:string){
+    return this.servers[parseInt(id)-1]
+  }
 }

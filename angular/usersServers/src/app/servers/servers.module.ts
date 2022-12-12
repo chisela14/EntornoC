@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ServersComponent } from './servers/servers.component';
+import { ServerComponent } from './server/server.component';
 
 
 
 @NgModule({
   declarations: [
-    ServersComponent
+    ServersComponent,
+    ServerComponent
   ],
   imports: [
     CommonModule

@@ -5,7 +5,7 @@ import { UsersService } from '../users.service';
   selector: 'app-add-user',
   templateUrl: './add-user.component.html'
 })
-export class AddUserComponent implements OnInit {
+export class AddUserComponent implements OnInit { //OnDestroy
 
   constructor(private userService: UsersService) { }
   ngOnInit(): void {
@@ -18,4 +18,8 @@ export class AddUserComponent implements OnInit {
     this.userService.addUser(this.name, this.email);
   }
 
+  //Angular se desuscribe por nosotros, pero también podemos hacerlo de la siguiente manera:
+  // ngOnDestroy() {
+  //   this.userService.unsubscribe();
+  // }
 }

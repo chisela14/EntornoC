@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces/user.interface'
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class UsersService {
 
   private url:string = "http://localhost:3000/users/";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private router:Router) { }
 
 
   getUsers():Observable<User[]>{
@@ -20,7 +21,20 @@ export class UsersService {
 
   addUser(name:string, email:string){
     const headers = {'Content-Type': "application/json"}
-    this.http.post(`${this.url}`, {"name":name, "email": email}, {headers: headers})
-    .subscribe((resp)=> console.log(resp));
+    name.trim();
+    email.trim();
+    if(name != "" && email != ""){
+      this.http.post(`${this.url}`, {"name":name, "email": email}, {headers: headers})
+      .subscribe({next: ()=> this.router.navigate(["users"])});//(resp)=> console.log(resp)
+    }else{
+      this.router.navigate(["error"]);
+    }
   }
+
+  result!:User;
+
+  getUser(id:string):Observable<User>{
+    return this.http.get<User>(`${this.url}${id}`)
+  }
+  
 }
