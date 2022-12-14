@@ -34,7 +34,7 @@ const isBlank = value => {
 
 //validaciones de los elementos
 const isDniValid = (dni) => {
-    const regexp = /^99\.999\.999-X$/i; //creo que no es correcta esta expresión, no sé cómo calcularla
+    const regexp = /^[0-9]{2}\.[0-9]{3}\.[0-9]{3}-[A-Z]$/i; 
     return regexp.test(dni);
 }
 
@@ -43,6 +43,7 @@ const checkDni = () => {
     let dni = dniE.value.trim();
     if(isBlank(dni)){
         error.textContent = "El DNI no puede estar vacío";
+        dni.textContent = "";
     }else if(!isDniValid(dni)){
         error.textContent = "El DNI introducido no es válido(99.999.999-X)"
     }else{
