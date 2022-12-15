@@ -17,7 +17,8 @@ const form = document.querySelector("form");
 const dniE = document.querySelector("#dni");
 const nameE = document.querySelector("#name");
 const dateE = document.querySelector("#date");
-const childrenE = document.querySelector(".form-children"); 
+// const childrenE = document.querySelector(".form-children"); 
+const childrenE = document.querySelectorAll("#children"); //dos input
 const numChildrenE = document.querySelector("#numChildren");
 const emailE = document.querySelector("#email");
 const webE = document.querySelector("#web");
@@ -25,6 +26,8 @@ const passwordE = document.querySelector("#password");
 
 //recoger el div de error donde se mostrarán los mensajes
 const error = document.querySelector("#error");
+//div de información para ver los campos correctos (hecho para mí para comprobar ya que el formulario no envía a ningún lado)
+const info = document.querySelector("#info");
 
 //función para comprobar si un campo está en blanco, se va a utilizar en casi todos los elementos a validar
 const isBlank = value => {
@@ -43,12 +46,14 @@ const checkDni = () => {
     let dni = dniE.value.trim();
     if(isBlank(dni)){
         error.textContent = "El DNI no puede estar vacío";
-        dni.textContent = "";
+        dni.value = "";
     }else if(!isDniValid(dni)){
         error.textContent = "El DNI introducido no es válido(99.999.999-X)"
+        dni.textContent = "";
     }else{
         valid = true;
         error.textContent = "";
+        info.textContent += `DNI correcto\n`;
     }
     return valid;
 }
@@ -64,8 +69,10 @@ const checkName = () => {
         if(numWords.length > 1 && numWords.length < 5){
             valid = true;
             error.textContent = "";
+            info.textContent += "Nombre correcto\n";
         }else{
             error.textContent = "Debe introducir un mínimo dos palabras y un máximo de cuatro en el campo 'Nombre'";
+            name.textContent = "";
         }
     }
 
@@ -95,9 +102,9 @@ const numChildrenDiv = document.querySelector(".form-children-num");
 
 const checkChildren = () => {
     let valid = false;
-    let inputs = childrenE.querySelectorAll("input");
-    for (let i=0;i<inputs.length;i++) {
-        if (inputs[i].checked){
+    // let inputs = childrenE.querySelectorAll("input");
+    for (let i=0;i<childrenE.length;i++) {//inputs.length
+        if (childrenE[i].checked){
             valid = true; 
             error.textContent = "";
         }
@@ -107,26 +114,34 @@ const checkChildren = () => {
     }
     return valid;
 }
+const childrenDiv = document.querySelector(".form-children"); 
+// childrenDiv.addEventListener('change', function(){ 
+//     if(this.value == "y"){
+//         numChildrenDiv.hidden = false;   
+//     }else{
+//         numChildrenDiv.hidden = true;  
+//     }
+// })
 
-childrenE.addEventListener('change', function(){ //tiene que volver a desaparecer si cambia la opción a No?
-    if(this.value == "y"){
-        numChildrenDiv.style.visibility = "visible";   
-    }else{
-        numChildrenDiv.style.visibility = "hidden";  
+childrenDiv.addEventListener('click', (e)=> { 
+    if(e.target.value == "y"){
+        numChildrenDiv.hidden = false;   
+    }else if(e.target.value == "n"){
+        numChildrenDiv.hidden = true;  
     }
 })
 
 const checkNumChildren = () => {
     let valid = false;
     //si el div está en invisible valid será true para validar el formulario completo
-    if(numChildrenDiv.style.visibility == "hidden"){
+    if(numChildrenDiv.hidden){
         valid = true;
     }else{
         let numChildren = numChildrenE.value;
         if(isBlank(numChildren)){
             error.textContent = "El número de hijos no puede estar vacío";
-        }else if (numChildren <= 0){
-            error.textContent = "El número de hijos no puede ser menor o igual que 0";
+        }else if (numChildren <= 0 || numChildren > 10){
+            error.textContent = "El número de hijos no puede ser menor o igual que 0, ni mayor de 10";
         }else{
             valid = true;
             error.textContent = "";
@@ -182,54 +197,55 @@ const checkPassword = () => {
     return valid;
 }
 
-//variable para guardar el resultado de las comprobaciones
-const isFormValid = {
-    dni: false,
-    name: false,
-    date: false,
-    children: false,
-    numChildren: false,
-    email: false,
-    web: false,
-    password: false 
-}
 
 //escuchar evento input del formulario (delegación) para validar según se rellene
 form.addEventListener('input', function(e) {
     switch(e.target.id){
         case 'dni':
-            isFormValid.dni = checkDni();
+            checkDni(); // isFormValid.dni = checkDni();
             break;
         case 'name':
-            isFormValid.name =checkName();
+            checkName();
             break;
         case 'date':
-            isFormValid.date = checkDate;
+            checkDate;
             break;
         case 'children':
-            isFormValid.children = checkChildren();
+            checkChildren();
             break;
         case 'numChildren':
-            isFormValid.numChildren = checkNumChildren();
+            checkNumChildren();
             break;
         case 'email':
-            isFormValid.email = checkEmail();
+            checkEmail();
             break;
         case 'web':
-            isFormValid.web = checkWeb();
+            checkWeb();
             break;
         case 'password':
-            isFormValid.password = checkPassword();
+            checkPassword();
             break;
     }
 })
 
-//escuchar evento submit del formulario para prevenir el por defecto y enviarlo si todas las validaciones devuelven true
-form.addEventListener('submit', function (e){
-    e.preventDefault();
-    const formValues = Object.values(isFormValid);
-    const valid = formValues.findIndex(value => value == false);
-    if (valid == -1) {
-        e.submit();
-    }
-})
+// Prevenir envío del botón, en este caso no hace falta porque se validan todos los campos cuando se rellenan
+//variable para guardar el resultado de las comprobaciones
+// const isFormValid = {
+//     dni: false,
+//     name: false,
+//     date: false,
+//     children: false,
+//     numChildren: false,
+//     email: false,
+//     web: false,
+//     password: false 
+// }
+// //escuchar evento submit del formulario para prevenir el por defecto y enviarlo si todas las validaciones devuelven true
+// form.addEventListener('submit', function (e){
+//     e.preventDefault();
+//     const formValues = Object.values(isFormValid);
+//     const valid = formValues.findIndex(value => value == false);
+//     if (valid == -1) {
+//         e.submit();
+//     }
+// })
