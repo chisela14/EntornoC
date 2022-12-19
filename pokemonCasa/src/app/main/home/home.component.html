@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-2">
+        <button type="button" class="btn btn-primary" (click)="showSearch()">Search</button>
+    </div>
+</div>
+
+<div class="row" *ngIf="!oculto">
+    <app-search (onSearch) = "searchPokemons($event)"></app-search>
+</div>
+
+<div class="row">
+    <app-list [pokemons]="pokemons"></app-list>
+</div>
+
+<div class="row">
+    <app-edit-pokemon></app-edit-pokemon>
+</div>
