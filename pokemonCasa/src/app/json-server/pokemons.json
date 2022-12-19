@@ -3,17 +3,14 @@
     {
       "id": 1,
       "name": {
-        "english": "Bulbasaur",
-        "japanese": "フシギダネ",
-        "chinese": "妙蛙种子",
-        "french": "Bulbizarre"
+        "english": "Bulbasaur"
       },
       "type": [
         "Grass",
         "Poison"
       ],
       "base": {
-        "HP": 40,
+        "HP": 44,
         "Attack": 49,
         "Defense": 49,
         "Sp. Attack": 65,

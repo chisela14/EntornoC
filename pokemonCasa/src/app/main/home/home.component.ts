@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
       next:(resp)=>{
         this.pokemons = resp
       },
-      error: (err)=>{
+      error: ()=>{
         this.error = true,
         this.pokemons = []
       }

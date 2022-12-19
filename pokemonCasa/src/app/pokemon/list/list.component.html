@@ -9,13 +9,17 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let pokemon of pokemons">
+        <tr *ngFor="let pokemon of pokemons" [ngClass]="pokemon.type[0]">
             <td>{{pokemon.name.english}}</td>
             <td>{{pokemon.type.join(" ")}}</td>
             <td>HP: {{pokemon.base.HP}} Attack: {{pokemon.base.Attack}} Defense:
                 {{pokemon.base.Defense}} Speed: {{pokemon.base.Speed}}</td>
             <td>PODER TOTAL: 
-                {{pokemon.base.HP + pokemon.base.Attack + pokemon.base.Defense + pokemon.base.Speed}}
+                <p [ngClass]="{'highPow': pokemon.base.Attack > 60,
+                    'medPow': pokemon.base.Attack > 45 && pokemon.base.Attack < 61,
+                    'lowPow': pokemon.base.Attack < 46}">
+                    {{pokemon.base.HP + pokemon.base.Attack + pokemon.base.Defense + pokemon.base.Speed}}
+                </p>
             </td>
             <td><a [routerLink]="['/edit/', pokemon.id]">Editar</a></td>
         </tr>

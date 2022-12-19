@@ -13,8 +13,10 @@ export class EditPokemonComponent implements OnInit {
 
   pokemon!:Pokemon;
   error:boolean = false;
+  code:number = 0;
   ngOnInit(): void {
-    this.pokemonService.getPokemon(this.route.snapshot.params['id'])
+    this.code = this.route.snapshot.params['id'];
+    this.pokemonService.getPokemon(this.code)
     .subscribe({
       next:(resp)=>{
         this.pokemon = resp;

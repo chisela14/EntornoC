@@ -1,1 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+.Grass{
+    background-color: green;
+}
+.Fire{
+    background-color: orangered;
+}
+.Water{
+    background-color: lightskyblue;
+}
+.Bug{
+    background-color: lightgreen;
+}
+.Normal{
+    background-color: lightgray;
+}
+.Poison{
+    background-color: purple;
+}
+.Electric{
+    background-color: yellow;
+}
+.Ground{
+    background-color:chocolate;
+}
+.Fairy{
+    background-color:deeppink;
+}
+.Fighting{
+    background-color: red;
+}
+.Psychic{
+    background-color: palevioletred;
+}
+.Rock{
+    background-color: peru;
+}
+.Ghost{
+    background-color: darkslateblue;
+}
+.Ice{
+    background-color: lightcyan;
+}
+.Dragon{
+    background-color: blue;
+}
+.Dark{
+    background-color: black;
+    color: white;
+}
+.Steel{
+    background-color: lightslategrey;
+}
+
+.highPow{
+    font-weight: 800;
+}
+.medPow{
+    font-weight: 500;
+}
+.lowPow{
+    font-weight: 200;
+}
