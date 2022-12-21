@@ -8,6 +8,7 @@
     <app-search (onSearch) = "searchPokemons($event)"></app-search>
 </div>
 
+<!--El que contiene la etiqueta es el padre, el app-x será el hijo-->
 <div class="row">
     <app-list [pokemons]="pokemons"></app-list>
 </div>

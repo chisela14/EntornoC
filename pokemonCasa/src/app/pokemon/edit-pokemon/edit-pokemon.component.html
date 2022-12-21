@@ -1,5 +1,5 @@
 <h3>Edit Pokemon</h3>
-<form (ngSubmit)="edit()">
+<form (ngSubmit)="edit()" *ngIf="pokemon"><!--funcionalidad extra con (change) si el formulario no cambia no se activa el botón-->
     <div class="row mb-3">
         <label for="name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-4">

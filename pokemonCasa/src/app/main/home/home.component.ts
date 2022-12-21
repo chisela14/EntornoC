@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
 
   oculto:boolean = true;
   showSearch(){
+    //!this.oculto niega el valor que tenga
     if(this.oculto){
       this.oculto = false;
     }else{

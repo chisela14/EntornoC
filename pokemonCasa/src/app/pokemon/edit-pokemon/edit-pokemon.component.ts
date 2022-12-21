@@ -15,8 +15,7 @@ export class EditPokemonComponent implements OnInit {
   error:boolean = false;
   code:number = 0;
   ngOnInit(): void {
-    this.code = this.route.snapshot.params['id'];
-    this.pokemonService.getPokemon(this.code)
+    this.pokemonService.getPokemon(this.route.snapshot.params['pokemon'])
     .subscribe({
       next:(resp)=>{
         this.pokemon = resp;
@@ -29,6 +28,8 @@ export class EditPokemonComponent implements OnInit {
 
   edit(){
     this.pokemonService.editPokemon(this.pokemon);
+    //funciona pero la redirección a veces es más rápida que la modificación de datos
+    // this.router.navigate(['/']);
   }
 
 }
