@@ -12,7 +12,7 @@ export class AuthService {
     //loggedIn:boolean = false;
 
     isAuthenticated():boolean {
-        return Boolean(localStorage.getItem("login"));
+        return JSON.parse(localStorage.getItem("login")||"false");
         // const promise = new Promise<boolean> (
         //     (resolve, reject) => {
         //         setTimeout(() => {
