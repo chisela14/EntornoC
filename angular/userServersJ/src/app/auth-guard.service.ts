@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate, CanActivateChild{
     }
 
     canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (this.authService.isAuthorised(localStorage.getItem("user")||"")){
+        if (this.authService.isAuthorised()){
             return true;
         } else {
             this.router.navigate(['/']);

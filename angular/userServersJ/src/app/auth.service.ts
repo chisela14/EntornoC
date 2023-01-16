@@ -1,18 +1,26 @@
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { User } from "./servers/interfaces/client.interface";
 import { UsersService } from './users/services/users.service';
+import { of, Observable, switchMap } from 'rxjs';
+import { CookieService } from "ngx-cookie-service";
 
 @Injectable()
 export class AuthService {
 
-    constructor(private userService: UsersService, private router:Router){}
+    constructor(private userService: UsersService, private router:Router, private http: HttpClient, private cookieService:CookieService){}
 
 
     //loggedIn:boolean = false;
 
     isAuthenticated():boolean {
-        return JSON.parse(localStorage.getItem("login")||"false");
+        let token:boolean = false;
+        if(this.cookieService.get("token")!=undefined){
+            token = true;
+        }
+        return token;
+        //return JSON.parse(localStorage.getItem("login")||"false");
         //localStorage.getItem("login")==='true'
 
         // const promise = new Promise<boolean> (
@@ -26,26 +34,34 @@ export class AuthService {
     }
 
     logout() {
-        localStorage.setItem("login", "false");
-        localStorage.setItem("user", "");
+        //localStorage.setItem("login", "false");
+        //localStorage.setItem("user", "");
+        this.cookieService.delete("token");
         //this.loggedIn = false;
     }
 
     
     login(email:string, passwd:string){
+        const headers: HttpHeaders = new HttpHeaders()
+        .set('Content-type','application/json')
+
         let user!:User;
         //si no encuentra devolverá un objeto vacío
         this.userService.getUserByEmail(email)
         .subscribe({
           next:(resp)=>{
             user = resp[0];
-            if(resp.length && user.name == passwd){
-                localStorage.setItem("login", "true");
-                localStorage.setItem("user", String(user.id));
+            if(resp.length && user.password == passwd){
+                //localStorage.setItem("login", "true");
+                //localStorage.setItem("user", String(user.rol));
                 //this.loggedIn = true;
+               
+                this.http.post<string>('http://localhost:8000/auth/login', user, {headers})
+                .subscribe({next:(resp)=>this.cookieService.set('token', resp)});
                 this.router.navigate(['/servers']);
             }else{
-                localStorage.setItem("login", "false");
+                //localStorage.setItem("login", "false");
+                this.cookieService.delete("token");
                 confirm('usuario o contraseña incorrectos');
                 //this.loggedIn = false;
             }
@@ -54,20 +70,7 @@ export class AuthService {
         })
     }
 
-    isAuthorised(code:string):boolean{
-        let result:boolean = false;
-        let user!:User;
-        this.userService.getUser(parseInt(code))
-        .subscribe({
-            next:(resp)=>{
-                console.log(resp);
-                user = resp;
-            }
-        })
-        console.log(user);
-        if(user.rol == "ADMIN"){
-            result = true;
-        }
-        return result;
+    isAuthorised():boolean{
+        return localStorage.getItem("user")==='ADMIN';
     }
 }

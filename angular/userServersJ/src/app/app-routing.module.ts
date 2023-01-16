@@ -27,11 +27,11 @@ const routes: Routes = [
   
   {
     path: 'servers',
-    canActivate:[AuthGuard],
+    canActivate:[AuthGuard], //canActivateChild[AuthGuard]
     canActivateChild:[AuthGuard],
     component: ServersComponent,
     children: [
-      { path: ':id/edit', component: EditServerComponent },
+      { path: ':id/edit', component: EditServerComponent },//canActivate[RolGuard, AuthGuard]
       { path: ':id', component: ServerComponent}
     ]
   },
