@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { ServersService } from './servers/services/servers.service';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { AuthService } from './auth.service';
     ServersModule,
     FormsModule
   ],
-  providers: [ServersService, AuthGuard, AuthService],
+  providers: [ServersService, AuthGuard, AuthService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

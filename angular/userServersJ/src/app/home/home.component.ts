@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -7,7 +9,7 @@ import { AuthService } from '../auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private authService:AuthService) {
+  constructor(private authService:AuthService, private router:Router, private cookieService:CookieService) {
   }
 
   logged!:boolean;
@@ -19,7 +21,10 @@ export class HomeComponent implements OnInit {
   password:string="";
 
   checkLogin(){
-    this.authService.login(this.user, this.password);
+    this.authService.login(this.user, this.password)
+    .subscribe({
+      next:()=>{this.router.navigate(['/servers'])}
+    })
     this.user="";
     this.password="";
   }

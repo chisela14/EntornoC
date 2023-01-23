@@ -5,6 +5,7 @@ import { ServerComponent } from './server/server.component';
 import { RouterModule } from '@angular/router';
 import { EditServerComponent } from './edit-server/edit-server.component';
 import { FormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
   ],
   exports: [
     ServersComponent
-  ]
+  ],
+  providers: [CookieService]
 })
 export class ServersModule { }
