@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { EditServerComponent } from './edit-server/edit-server.component';
 import { FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptorService } from '../auth-interceptor.service';
 
 
 
@@ -18,11 +20,17 @@ import { CookieService } from 'ngx-cookie-service';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   exports: [
     ServersComponent
   ],
-  providers: [CookieService]
+  providers: [CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+      }]
 })
 export class ServersModule { }

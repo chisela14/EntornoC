@@ -4,6 +4,7 @@ import { UsersService } from './users/services/users.service';
 import { of, switchMap, catchError } from 'rxjs';
 import { CookieService } from "ngx-cookie-service";
 import { AuthResponse } from './servers/interfaces/token.interface';
+import Swal from 'sweetalert2';
 
 @Injectable()
 export class AuthService {
@@ -62,6 +63,7 @@ export class AuthService {
                 this.getRol(email);
                 return of(true);
             }),catchError(error => {
+                Swal.fire("Usuario o contraseña incorrectos")
                 this.logout()
                 return of(false);
             })

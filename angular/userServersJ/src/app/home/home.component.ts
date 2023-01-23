@@ -28,8 +28,7 @@ export class HomeComponent implements OnInit {
   checkLogin(){
     this.authService.login(this.user, this.password)
     .subscribe({
-      next:()=>{this.router.navigate(['/servers'])},
-      error:(err)=>{Swal.fire(err)}
+      next:()=>{this.router.navigate(['/servers'])}
     })
     this.user="";
     this.password="";
