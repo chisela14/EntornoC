@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,11 @@ export class HomeComponent implements OnInit {
 
   logged!:boolean;
   ngOnInit(): void {
-    this.logged = this.authService.isAuthenticated();
+    this.authService.isAuthenticated()
+    .subscribe({
+      next:(resp)=>{this.logged = resp},
+      error:(err)=>{this.logged = false}
+    })
   }
 
   user:string="";
@@ -23,7 +28,8 @@ export class HomeComponent implements OnInit {
   checkLogin(){
     this.authService.login(this.user, this.password)
     .subscribe({
-      next:()=>{this.router.navigate(['/servers'])}
+      next:()=>{this.router.navigate(['/servers'])},
+      error:(err)=>{Swal.fire(err)}
     })
     this.user="";
     this.password="";

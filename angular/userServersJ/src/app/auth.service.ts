@@ -13,11 +13,17 @@ export class AuthService {
 
     //loggedIn:boolean = false;
 
-    isAuthenticated():boolean {
-        if(!this.cookieService.check("authenticated")){
-            this.cookieService.set("authenticated", "false");
-        }
-        return this.cookieService.get("authenticated")==='true';
+    isAuthenticated() {
+        //get a jwt, si responde true, catherror false
+        let url:string = "http://localhost:8000/jwt";
+        const httpOptions = {
+            headers: new HttpHeaders().set( 'Authorization', `Bearer ${this.cookieService.get('token')}`)
+        };
+      
+        return this.http.get(url,httpOptions)
+        .pipe(switchMap(resp =>{return of(true)}),
+            catchError(error=>{return of(false)})
+        );
 
         //guardar login en localStorage
         //return JSON.parse(localStorage.getItem("login")||"false");
@@ -46,7 +52,6 @@ export class AuthService {
 
     
     login(email:string, password:string){
-        console.log("login");
         const headers: HttpHeaders = new HttpHeaders()
         .set('Content-type','application/json');
 
@@ -54,7 +59,6 @@ export class AuthService {
         return this.http.post<AuthResponse>('http://localhost:8000/auth/login', {email, password}, {headers})
         .pipe(switchMap(token => {
                 this.cookieService.set('token', token.access_token);
-                this.cookieService.set('authenticated', 'true');
                 this.getRol(email);
                 return of(true);
             }),catchError(error => {
